@@ -5,8 +5,9 @@ import Link from "next/link";
 import Icon from "./Icon";
 import { TripCard } from "./Site";
 import { months, durations, budgets, seasonMonths, matchesDuration, matchesBudget, rupee } from "../lib/search";
+import { regions } from "../lib/explore";
 
-const states = ["All", "Meghalaya", "Assam", "Sikkim", "Arunachal Pradesh", "Nagaland"];
+const states = ["All", ...regions.map((r) => r.name)];
 
 export default function JourneyFinder({ trips, prices = {} }) {
   const [f, setF] = useState({ q: "", state: "All", month: "", days: "any", budget: "any", sort: "featured" });
