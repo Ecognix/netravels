@@ -1,5 +1,6 @@
 import Link from "next/link";
 import MobileMenu from "./MobileMenu";
+import Icon from "./Icon";
 
 export function Mark({ light = false }) {
   return <Link href="/" className={`brand${light ? " brand-light" : ""}`} aria-label="NE Travels home"><span className="brand-mark"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M3 24 11.5 9l4.7 8 3.2-5L29 24H3Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/><circle cx="23.5" cy="7.5" r="2" fill="currentColor"/></svg></span><span>ne<span className="brand-dot">.</span><small>TRAVELS</small></span></Link>;
@@ -19,7 +20,7 @@ export function SectionHeading({ eyebrow, title, text, action }) {
 }
 
 export function TripCard({ trip, index }) {
-  return <Link href={`/journeys/${trip.slug}`} className="trip-card"><div className="trip-image"><img src={trip.image} alt="" loading="lazy"/><span className="trip-number">{String(index + 1).padStart(2, "0")}</span><span className="trip-arrow"><i className="ar"/></span></div><div className="trip-meta"><span>{trip.state}</span><span>{trip.duration}</span></div><h3>{trip.title}</h3><p>{trip.short}</p><span className="trip-link">Explore this journey <i className="ar"/></span></Link>;
+  return <Link href={`/journeys/${trip.slug}`} className="trip-card"><div className="trip-image"><img src={trip.image} alt="" loading="lazy"/><span className="trip-number">{String(index + 1).padStart(2, "0")}</span><span className="trip-duration"><Icon name="clock"/>{trip.duration}</span><span className="trip-arrow"><i className="ar"/></span></div><div className="trip-meta"><span>{trip.state}</span></div><h3>{trip.title}</h3><p>{trip.short}</p><span className="trip-link">Explore this journey <i className="ar"/></span></Link>;
 }
 
 export function MiniCta() {

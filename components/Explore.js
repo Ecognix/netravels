@@ -18,7 +18,6 @@ export function StateCard({ region, index }) {
     <Link href={`/explore/${region.slug}`} className="state-card">
       <img src={regionImages[region.slug]} alt={`${region.name} landscape`} loading="lazy" />
       <div className="state-shade" />
-      <span className="state-num">{String(index + 1).padStart(2, "0")}</span>
       <div className="state-body"><span>{region.tag}</span><h3>{region.name}</h3><p>{region.summary}</p><em className="state-more">Explore {region.name} <i className="ar" /></em></div>
     </Link>
   );

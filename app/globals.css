@@ -550,3 +550,38 @@ input:focus,select:focus,textarea:focus{border-color:#aeb2d6}
 .rs-dots button.on{width:30px;background:linear-gradient(90deg,var(--accent),var(--gold))}
 @media(max-width:1000px){.rs-card{flex-basis:calc((100% - 20px)/2)}}
 @media(max-width:640px){.rs-head{gap:14px 16px}.rs-brand{font-size:1.15rem}.rs-score{padding-left:16px}.rs-score strong{font-size:1.7rem}.rs-score .stars .ui-icon{width:17px;height:17px}.rs-note{order:5;width:100%}.rs-arrows{display:none}.rs-card{flex-basis:88%}}
+/* Warm sunset theme (amber / orange / deep brown) */
+:root{--forest:#b4511a;--deep:#34190c;--mint:#fff1dc;--sky:#fff4e4;--ink:#2a1a10;--muted:#6f5b4c;--indigo-grad:linear-gradient(135deg,#34190c,#7a3510 55%,#c8691c)}
+.button-dark{background:linear-gradient(135deg,#c2561a,#f08a24);color:#fff}
+.button-dark:hover{background:linear-gradient(135deg,#34190c,#7a3510)}
+.hero-shade{background:linear-gradient(90deg,rgba(40,18,6,.84),rgba(40,18,6,.28) 70%),linear-gradient(0deg,rgba(40,18,6,.55),transparent 45%)}
+.state-shade,.place-slide-shade{background:linear-gradient(0deg,rgba(40,18,6,.93),rgba(40,18,6,.06) 62%)}
+.season-grid article,.tip-grid>div,.review-card,.process-grid article,.place-card{box-shadow:0 10px 30px rgba(180,81,26,.12)}
+.quick-box{box-shadow:0 14px 40px rgba(180,81,26,.16)}
+.avatar{background:linear-gradient(135deg,#c2561a,#f5a524)}
+.menu-brand small,.menu-links a em{color:#ffc65a}
+.menu-bottom p,.light-copy,.state-body p,.related-trip p{color:#f6dfc4}
+.support-header small{color:#ffe2b8}
+.support-panel{background:linear-gradient(180deg,#fff4e4,#fffaf2)}
+.support-message.user,.support-form button{background:#b4511a}
+.support-form button:disabled{background:#e2c9b0}
+.support-starters button{border-color:#ecd5b8;color:#8a3c10}
+.support-starters button:hover{background:#b4511a;border-color:#b4511a}
+.support-launcher{background:linear-gradient(135deg,#7a3510,#c8691c 60%,#e8a21f);color:#fff7ea;text-shadow:0 1px 2px rgba(40,18,6,.45);box-shadow:0 10px 28px rgba(120,52,16,.4)}
+.support-launcher:hover{filter:brightness(1.06)}
+.header-signup{color:#b4511a;border-color:#b4511a}.header-signup:hover{background:#b4511a}
+.rs-dots button{background:#e4d2bd}.rs-arrows button{border-color:#e4cfb4;color:#b4511a}.rs-arrows button:hover{background:#b4511a}
+.rs-score{border-left-color:#e4cfb4}
+
+/* Rating row alignment */
+.rs-score{align-items:center;gap:12px}
+.rs-score strong{display:flex;align-items:center;height:24px;font-size:2rem;line-height:1}
+.rs-score .stars{display:flex;align-items:center;height:24px;gap:3px}
+.rs-score .stars .ui-icon{display:block;width:22px;height:22px}
+.rs-brand{align-items:center;line-height:1}
+@media(max-width:640px){.rs-score strong{height:22px;font-size:1.7rem}.rs-score .stars{height:22px}.rs-score .stars .ui-icon{width:18px;height:18px}}
+
+/* Duration badge on journey cards */
+.trip-duration{position:absolute;left:15px;bottom:15px;display:inline-flex;align-items:center;gap:7px;padding:8px 13px;background:#34190c;color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.04em;border-radius:999px;box-shadow:0 6px 16px rgba(0,0,0,.3)}
+.trip-duration .ui-icon{width:15px;height:15px;color:#ffc65a}
+.trip-meta{font-size:.7rem}
