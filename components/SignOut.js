@@ -13,5 +13,5 @@ export default function SignOut() {
     if (signOutError) { setError(signOutError.message); return; }
     router.push("/"); router.refresh();
   }
-  return <div><button className="text-button" onClick={signOut}>Sign out ↗</button>{error && <p role="alert" className="form-message error">{error}</p>}</div>;
+  return <div><button className="text-button" onClick={signOut}>Sign out <i className="ar"/></button>{error && <p role="alert" className="form-message error">{error}</p>}</div>;
 }

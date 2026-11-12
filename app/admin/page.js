@@ -12,7 +12,7 @@ export default async function Admin() {
   const supabase = await createClient();
   if (!supabase) return <section className="section page-top"><div className="shell"><h1>Admin setup <em>needed.</em></h1><p className="section-copy">Configure Supabase and administrator access before using this panel.</p></div></section>;
   const { data: { user }, error: authError } = await supabase.auth.getUser();
-  if (authError || !user) return <section className="section page-top"><div className="shell"><h1>Team <em>sign in.</em></h1><p className="section-copy">Sign in with an authorised administrator account.</p><Link className="button button-dark" href="/auth?next=%2Fadmin">Sign in ↗</Link></div></section>;
+  if (authError || !user) return <section className="section page-top"><div className="shell"><h1>Team <em>sign in.</em></h1><p className="section-copy">Sign in with an authorised administrator account.</p><Link className="button button-dark" href="/auth?next=%2Fadmin">Sign in <i className="ar"/></Link></div></section>;
   const { data: admin, error: adminError } = await supabase.from("admin_users").select("user_id").eq("user_id", user.id).maybeSingle();
   if (adminError) return <section className="section page-top"><div className="shell"><h1>Unable to check <em>access.</em></h1><p className="section-copy">The admin service could not verify your account. Check the Supabase setup.</p></div></section>;
   if (!admin) return <section className="section page-top"><div className="shell"><h1>Access <em>restricted.</em></h1><p className="section-copy">This account is not an administrator. Ask the site owner to grant access.</p><SignOut/></div></section>;
