@@ -6,6 +6,7 @@ import Icon from "./Icon";
 import { regions, experiences, planningTips, seasons, reviews } from "../lib/explore";
 import { regionImages, placeImages } from "../lib/explore-media";
 import Marquee from "./Marquee";
+import ReviewSlider from "./ReviewSlider";
 import { GoogleG } from "./Icon";
 
 const places = regions.flatMap((r) => r.places.filter(([name]) => placeImages[name]).map(([name, text]) => ({ name, text, region: r })));
@@ -55,7 +56,7 @@ export default function Explore() {
       <section className="section places-band"><div className="shell"><p className="eyebrow">TRENDING PLACES</p><h2>Places you will <em>remember.</em></h2></div><Marquee label="Popular places" speed={70}>{places.map((p) => <Link key={p.name} href={`/explore/${p.region.slug}`} className="place-slide"><img src={placeImages[p.name]} alt={p.name} loading="lazy" /><div className="place-slide-shade" /><div className="place-slide-body"><span>{p.region.name}</span><h3>{p.name}</h3><p>{p.text}</p></div></Link>)}</Marquee></section>
       <section className="why-section"><div className="shell"><p className="eyebrow light-eyebrow">THINGS TO DO</p><h2>Experiences worth <em>the trip.</em></h2><div className="why-grid why-six">{experiences.map(([t, d], i) => <article key={t}><span>0{i + 1} /</span><h3>{t}</h3><p>{d}</p></article>)}</div></div></section>
       <section className="section"><div className="shell"><p className="eyebrow">WHEN TO GO</p><h2>A season for <em>every mood.</em></h2><div className="season-grid">{seasons.map(([m, t, d]) => <article key={m}><span>{m}</span><h3>{t}</h3><p>{d}</p></article>)}</div></div></section>
-      <section className="section reviews-section"><div className="shell"><p className="eyebrow">TRAVELLER STORIES</p><h2>Heard on the <em>road.</em></h2></div><Marquee label="Traveller reviews" speed={60}>{reviews.map(([name, city, trip, text]) => <figure className="review-card" key={name}><div className="review-top"><span className="avatar">{name[0]}</span><div><strong>{name}</strong><small>{city} · {trip}</small></div><GoogleG /></div><div className="stars" aria-label="5 out of 5 stars">{[0, 1, 2, 3, 4].map((i) => <Icon key={i} name="starfill" />)}</div><blockquote>{text}</blockquote></figure>)}</Marquee><p className="shell small-note sample-note">Sample reviews shown while live Google Reviews are being connected.</p></section>
+      <section className="section reviews-section"><div className="shell"><p className="eyebrow">TRAVELLER STORIES</p><h2>Heard on the <em>road.</em></h2></div><div className="shell"><ReviewSlider reviews={reviews} /></div><p className="shell small-note sample-note">Sample reviews shown while live Google Reviews are being connected.</p></section>
       <section className="section soft-section"><div className="shell"><p className="eyebrow">PLAN SMART</p><h2>Before you <em>go.</em></h2><div className="tip-grid">{planningTips.map(([t, d]) => <div key={t}><h3>{t}</h3><p>{d}</p></div>)}</div><div className="cta-row"><Link className="button button-dark" href="/journeys">Browse journeys <i className="ar" /></Link><Link className="button button-line" href="/contact">Plan with our team <i className="ar" /></Link></div></div></section>
     </>
   );
