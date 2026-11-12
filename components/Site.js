@@ -1,4 +1,5 @@
 import Link from "next/link";
+import MobileMenu from "./MobileMenu";
 
 export function Mark({ light = false }) {
   return <Link href="/" className={`brand${light ? " brand-light" : ""}`} aria-label="NE Travels home"><span className="brand-mark"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M3 24 11.5 9l4.7 8 3.2-5L29 24H3Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/><circle cx="23.5" cy="7.5" r="2" fill="currentColor"/></svg></span><span>ne<span className="brand-dot">.</span><small>TRAVELS</small></span></Link>;
@@ -6,7 +7,7 @@ export function Mark({ light = false }) {
 
 export function Header() {
   const links = [["/destinations", "Destinations"], ["/journeys", "Journeys"], ["/explore", "Explore NE"], ["/about", "Our approach"], ["/contact", "Contact"]];
-  return <header className="header"><div className="shell header-inner"><Mark/><nav className="desktop-nav" aria-label="Main navigation">{links.map(([href, label]) => <Link key={href} href={href}>{label}</Link>)}</nav><div className="header-actions"><Link href="/account" className="header-account">My account</Link><Link href="/journeys" className="button button-dark header-cta">Find your journey <i className="ar"/></Link><details className="mobile-menu"><summary aria-label="Open navigation"><span></span><span></span></summary><nav aria-label="Mobile navigation">{links.map(([href, label]) => <Link key={href} href={href}>{label}</Link>)}<Link href="/travel-info">Travel information</Link><Link href="/account">My account</Link></nav></details></div></div></header>;
+  return <header className="header"><div className="shell header-inner"><Mark/><nav className="desktop-nav" aria-label="Main navigation">{links.map(([href, label]) => <Link key={href} href={href}>{label}</Link>)}</nav><div className="header-actions"><Link href="/account" className="header-account">My account</Link><Link href="/auth?mode=signup" className="header-signup">Sign up</Link><Link href="/journeys" className="button button-dark header-cta">Find your journey <i className="ar"/></Link><MobileMenu links={[...links, ["/travel-info", "Travel information"], ["/account", "My account"]]}/></div></div></header>;
 }
 
 export function Footer() {

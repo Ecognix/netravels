@@ -40,3 +40,9 @@ Before public launch, configure rate limiting and abuse protection for the publi
 Create a separate Vercel project. If deploying from this repository's `ne-travels` folder, set **Root Directory** to `ne-travels`; if deploying the standalone `netravels` repository, use the repository root. Add the environment variables for each environment and redeploy after changing them. Add the actual production and preview callback URLs to Supabase's allowlist. Use a dedicated production database, restrictive redirect URL allowlists, and production SMTP; verify signup, email confirmation, booking, owner isolation, admin access, price changes, contact messages and chat end to end before launch.
 
 The itineraries and seasonal advice are illustrative. Confirm suppliers, permits, prices, inclusions, availability, cancellation terms and the privacy policy with the business before publishing. Images are credited, with source and licence links, on the photo credits page; image crops do not guarantee that each depicted site is included in a journey.
+
+## Supabase setup
+
+1. In the Supabase SQL editor run supabase/schema.sql, then supabase/upgrade-admin.sql.
+2. Create an account on the site, then make it an admin: `insert into public.admin_users (user_id) select id from auth.users where email='you@example.com';`
+3. Set NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY and NVIDIA_API_KEY in .env.local (and in your host).

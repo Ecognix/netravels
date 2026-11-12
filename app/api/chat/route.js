@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { trips } from "../../../lib/packages";
 import { getPrices, formatPrice } from "../../../lib/prices";
 
+export const maxDuration = 120;
+
 export async function POST(request) {
   const key = process.env.NVIDIA_API_KEY;
   if (!key) return NextResponse.json({ error: "AI support is not configured. Please use the contact form." }, { status: 503 });
@@ -12,13 +14,13 @@ export async function POST(request) {
   }
   const { prices, samples, error } = await getPrices();
   const tripFacts = trips.map((trip) => `${trip.title}: ${trip.state}, ${trip.duration}, starts ${trip.start}; ${error ? "price unavailable" : `${formatPrice(prices[trip.slug])} per person${samples.includes(trip.slug) ? " (sample price, not an offer)" : ""}`}. ${trip.intro} Key notes: ${trip.note}`).join("\n");
-  const system = `You are NE Travels' customer support assistant. Answer clearly and accurately using these website facts. Do not invent availability, supplier confirmation, inclusions, prices, permits or cancellation terms. Booking is recorded without payment or live availability verification; services must be confirmed by the team. Direct booking or customization requests to /journeys or /contact; you cannot submit forms or change bookings. The phone number shown on the site is a non-working placeholder. Never ask for passwords, identification numbers, payment details, or other sensitive data. If uncertain, say so and direct the visitor to the contact form. Website journeys:\n${tripFacts}`;
+  const system = `You are NE Travels' customer support assistant. Answer clearly and accurately using these website facts. Do not invent availability, supplier confirmation, inclusions, prices, permits or cancellation terms. Booking is recorded without payment or live availability verification; services must be confirmed by the team. Direct booking or customization requests to /journeys or /contact; you cannot submit forms or change bookings. The phone number shown on the site is a non-working placeholder. Never ask for passwords, identification numbers, payment details, or other sensitive data. If uncertain, say so and direct the visitor to the contact form. You may also give brief, general guidance about travelling in Northeast India (seasons, culture, food, permits) and should recommend checking official sources for permits and road conditions. Website journeys:\n${tripFacts}`;
   try {
     const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
       method: "POST",
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "minimaxai/minimax-m3.1-flash", messages: [{ role: "system", content: system }, ...input.messages], max_tokens: 700, temperature: 0.4 }),
-      signal: AbortSignal.timeout(45000),
+      body: JSON.stringify({ model: "minimaxai/minimax-m3.1-flash", messages: [{ role: "system", content: system }, ...input.messages],       max_tokens: 1200, temperature: 0.4 }),
+            signal: AbortSignal.timeout(110000),
     });
     if (!response.ok) {
       console.error("NVIDIA chat failed:", response.status);

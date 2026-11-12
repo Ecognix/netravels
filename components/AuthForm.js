@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "../lib/supabase/client";
 
-export default function AuthForm({ next = "/account", callbackError = false }) {
-  const [mode, setMode] = useState("signin");
+export default function AuthForm({ next = "/account", callbackError = false, initialMode = "signin" }) {
+  const [mode, setMode] = useState(initialMode);
   const [message, setMessage] = useState(callbackError ? "We couldn’t verify that link. Please try signing in again." : "");
   const [error, setError] = useState(callbackError);
   const [busy, setBusy] = useState(false);
